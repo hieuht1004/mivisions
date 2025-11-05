@@ -1,0 +1,309 @@
+@charset "UTF-8";
+:root {
+    /* Brand colors */
+    --color-primary: #008CC7;
+    --color-secondary: #CF9744;
+
+    /* Neutrals */
+    --color-white: #FFFFFF;
+    --color-black: #000000;
+    --color-gray-100: #F5F5F5;
+    --color-gray-500: #888888;
+    --color-gray-900: #1A1A1A;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+ul, li, ol {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+}
+img {
+    max-width: 100%;
+}
+button, input, a {
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+body {
+    margin: 0;
+    padding: 0;
+    color: #111;
+    font-family: "DM Sans", sans-serif;
+    width: 100%;
+    position: relative;
+}
+
+header {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 0px;
+    align-items: center;
+    padding: 4px 72px;
+    height: 84px;
+}
+header .left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+}
+header .right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 24px;
+}
+header ul {
+    display: flex;
+    gap: 32px;
+}
+header ul li a {
+    font-weight: 500;
+    color: #3C3C3C;
+    transition: all ease .3s;
+}
+header ul li a:hover {
+    color: #008CC7;
+}
+header ul li {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+header ul li:hover > img {
+    animation: arrowUpandDown ease-in-out 500ms infinite;
+}
+/* Animation when hover li > Arrow shape transition up and down */
+@keyframes arrowUpandDown {
+  0%   {transform: translateY(-1px);}
+  100%  {transform: translateY(2px);}
+}
+@keyframes arrowLefttoRight {
+  0%   {transform: translateX(-1px);}
+  100%  {transform: translateX(2px);}
+}
+
+.btn {
+    border-radius: 48px;
+    overflow: hidden;
+    position: relative;
+    transition: all ease-in-out .3s;
+}
+.btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 100%
+    );
+    transform: skewX(-20deg);
+    animation: hologram 5s infinite;
+    display: none;
+}
+.btn:hover::after {
+    display: block;
+}
+.btn:hover {
+    transform: rotate(-4deg) translateY(4px);
+}
+.btn.small {
+    padding:0 12px;
+    height: 32px;
+    line-height: 32px;
+}
+.btn.large {
+    padding: 0 24px;
+    height: 56px;
+    line-height: 56px;
+    font-weight: 600;
+}
+.btnblue {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+.btngold {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+}
+.btnblack {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+.btnoutline {
+    color: var(--color-black);
+    border: 1px solid var(--color-black);
+}
+.btn-signin {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding-left: 20px !important;
+}
+.btn-signin:hover > img {
+    animation: arrowLefttoRight ease-in-out 500ms infinite;
+}
+
+section.hero {
+    height: calc(100vh - 84px);
+}
+section.hero .row {
+    text-align: center;
+    height: 25%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+section.hero .row1 {
+    background: #64AAC7;
+}
+section.hero .row2 {
+    background: #97C7DB;
+}
+section.hero .row3 {
+    background: #BFDEEB;
+}
+section.hero .row4 {
+    background: linear-gradient(to bottom, #E1F2F8, #FFFFFF);
+}
+section.hero h4 {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 120%;
+    color: var(--color-white);
+    text-transform: uppercase;
+}
+section.hero h1 {
+    font-size: 44px;
+    font-weight: 600;
+    line-height: 120%;
+    color: var(--color-white);
+    text-shadow: 0 4px 8px rgba(0, 0, 0, .2);
+}
+.row4 .container {
+    display: flex;
+    gap: 24px;
+}
+.row3 .container {
+    display: flex;
+    max-width: 960px;
+    height: 100%;
+    gap: 96px;
+}
+
+.row3 .r3card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    padding-top: 48px;
+    position: relative;
+    transition: all ease-in-out .3s;
+}
+.card-mask {
+    position: absolute;
+    bottom: -48px;
+    left: -10%;
+    width: 120%;
+    height: 48px;
+    background: linear-gradient(to bottom, #E1F2F8, #E8F5FA);
+}
+.row3 .r3card .card-title {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 100%;
+    color: var(--color-white);
+    background: var(--color-primary);
+    padding: 12px 24px;
+    border-radius: 16px;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: -24px;
+    overflow: hidden;
+}
+.row3 .r3card img {
+    border-radius: 24px;
+    margin-top: -12px;
+    z-index: 0;
+}
+.row3 .r3card:nth-child(2) h2 {
+    transform: rotate(-5deg);
+}
+.row3 .r3card:nth-child(1) h2,
+.row3 .r3card:nth-child(3) h2,
+.row3 .r3card:nth-child(2) img {
+    transform: rotate(5deg);
+}
+.row3 .r3card:nth-child(1) img,
+.row3 .r3card:nth-child(3) img {
+    transform: rotate(-5deg);
+}
+/* 
+    CARD EFFECT WHEN HOVERING
+*/
+.row3 .r3card:hover .card-mask {
+    opacity: 0;
+}
+.row3 .r3card:hover > img {
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.4);
+}
+.row3 .r3card:hover {
+    animation: card-bounce 2s;
+    transition: all ease-in-out;
+}
+@keyframes card-bounce {
+    0% {
+        transform: translateY(-30px) scale(1.2);
+    }
+    50% {
+        transform: translateY(-20px) scale(1.2);
+    }
+}
+
+/*
+    CARD LABEL HOLOGRAM ANIMATION
+*/
+.card-title::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 100%
+    );
+    transform: skewX(-20deg);
+    animation: hologram 2s infinite;
+}
+@keyframes hologram {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 120%;
+    }
+}

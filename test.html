@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hover Only One Card Visible</title>
+    <style>
+      body {
+        background: #cfe7f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      /* SECTION CHA */
+      .card-section {
+        display: flex;
+        gap: 60px;
+        border: 3px dashed black;
+        border-radius: 16px;
+        padding: 40px;
+        background: #cde7f5;
+      }
+
+      /* WRAPPER cho từng card */
+      .card-wrapper {
+        width: 240px;
+        height: 300px;
+        overflow: hidden; /* Chỉ thẻ này chịu trách nhiệm cắt */
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+      }
+
+      /* CARD */
+      .card {
+        width: 240px;
+        height: 300px;
+        background: white;
+        border-radius: 20px;
+        position: relative;
+        bottom: -80px; /* ẩn 1/3 */
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+      }
+
+      /* Khi card hover */
+      .card.hovered {
+        transform: translateY(-100px) scale(1.1);
+        box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+        z-index: 2;
+      }
+
+      /* Khi card hover thì container cha của nó cho visible */
+      .card-wrapper.active {
+        overflow: visible;
+        transition: all 0.3s ease-in-out;
+      }
+
+      /* Ảnh */
+      .card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 24px;
+      }
+
+      /* TITLE */
+      .card-title {
+        position: absolute;
+        top: 10px;
+        left: 20px;
+        background: #008bdc;
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-weight: bold;
+        transform: rotate(-5deg);
+        overflow: hidden;
+      }
+
+      /* HIỆU ỨNG HOLOGRAM */
+      .card-title::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(
+          120deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.4) 50%,
+          transparent 100%
+        );
+        transform: skewX(-20deg);
+        animation: hologram 2s infinite;
+      }
+
+      /* Animation hologram */
+      @keyframes hologram {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 120%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card-section fade-up">
+      <div class="card-wrapper">
+        <div class="card">
+          <h2 class="card-title">Businesses</h2>
+          <img src="/assets/i01.jpg" alt="Businesses" />
+        </div>
+      </div>
+      <div class="card-wrapper">
+        <div class="card">
+          <h2 class="card-title">Distributors</h2>
+          <img src="/assets/i02.jpg" alt="Distributors" />
+        </div>
+      </div>
+      <div class="card-wrapper">
+        <div class="card">
+          <h2 class="card-title">Job Sekkers</h2>
+          <img src="/assets/i03.jpg" alt="Job Sekkers" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const cards = document.querySelectorAll(".card");
+
+      cards.forEach((card) => {
+        const wrapper = card.parentElement;
+        const title = card.querySelector(".card-title");
+
+        card.addEventListener("mouseenter", () => {
+          wrapper.classList.add("active"); // chỉ bật visible cho card này
+          card.classList.add("hovered");
+          title.classList.add("shine");
+        });
+
+        card.addEventListener("mouseleave", () => {
+          wrapper.classList.remove("active");
+          card.classList.remove("hovered");
+          title.classList.remove("shine");
+        });
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="e.js" type="text/javascript"></script>
+  </body>
+</html>
